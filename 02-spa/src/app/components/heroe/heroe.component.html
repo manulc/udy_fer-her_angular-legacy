@@ -1,0 +1,25 @@
+<!-- Lo que hay a la derecha de "|"" se denomina Pipe y cambia el aspecto visual, no lo datos -->
+<h1 class="animated fadeIn">{{ heroe.nombre | uppercase }} <small>({{ heroe.aparicion | date: 'y' }})</small></h1>
+<hr>
+
+<div class="row animated fadeIn fast">
+  <div class="col-md-4">
+    <img [src]="heroe.img" class="img-fluid" [alt]="heroe.nombre">
+    <br><br>
+    <!-- Asociamos el evento "click" de este enlace con la ejecución del método "volver" para volver a la ruta anterior  -->
+    <a (click)="volver()" class="btn btn-outline-danger btn-block">Regresar</a>
+  </div>
+  <div class="col-md-8">
+    <h3>{{ heroe.nombre }}</h3>
+    <hr>
+    <p>
+      {{ heroe.bio }}
+    </p>
+    <div>
+      <!-- Con la directiva *ngIf, es posible habilitar o deshabilitar estructuras HTML dependiendo de si se cumple o no una condición -->
+      <img *ngIf="heroe.casa=='Marvel'" class="img-logo" src="assets/img/marvel-logo.png" alt="Marvel">
+      <img *ngIf="heroe.casa=='DC'" class="img-logo" src="assets/img/dc-logo.jpg" alt="DC">
+    </div>
+  </div>
+
+</div>

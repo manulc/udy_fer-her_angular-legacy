@@ -1,0 +1,36 @@
+<!-- Navbar de Bootstrap -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+  aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <a class="navbar-brand" href="#">
+     <!--Esta imagen es nuestra y se encuentra en la carpeta de recursos externos "assets" -->
+    <img src="assets/img/A-64.png" width="30" height="30" alt="">
+  </a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <!-- A "routerLinkActive" se le asocia una clase de estilos y lo que va a hacer es aplicar dicha clase al enlace que se encuentre activo,ces decir,cal enlace que se ha pulsado -->
+        <li class="nav-item" routerLinkActive="active">
+            <!-- Con "routerLink" indicamos el path o url donde queremos navegar al pulsar en el enlace -->
+            <!-- Si la url fuese "/home/paginas/1", en routerLink habría que poner [routerLink] = "['home','paginas','1']" -->
+            <a class="nav-link" [routerLink] = "['home']">Home</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink] = "['heroes']">Heroes</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" [routerLink] = "['about']">About</a>
+        </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+        <!-- Se establece un id o alias("#buscarTexto") al elemento "input" para poder pasarle al método asociado al evento "keyup.enter" el valor del texto introducido en ese elemento -->
+        <input class="form-control mr-sm-2" type="search" placeholder="Buscar héroe" aria-label="Search" (keyup.enter)="buscarHeroe(buscarTexto.value)" #buscarTexto>
+        <!--El elemento "button" tiene asociado un método cuando se produzca el evento "click" -->
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="button" (click)="buscarHeroe(buscarTexto.value)">Buscar</button>
+    </form>
+  </div>
+</nav>
+<!-- Final del navbar obtenido de Bootstrap -->

@@ -1,0 +1,190 @@
+<h1 class="mt-3">Pipes <small>Angular</small></h1>
+<hr>
+<div class="row">
+  <div class="col">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Variable</th>
+          <th>Pipe</th>
+          <th>Producto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Pipe que pone el nombre en mayúscula -->
+        <tr>
+          <td>{{ nombre }}</td>
+          <td>uppercase</td>
+          <td>{{ nombre | uppercase }}</td>
+        </tr>
+        <!-- Pipe personalizado que capitaliza un nombre. Si se le pasa "true" como parámetro opcional o nada(por defecto también es "true"), capitaliza todas las palabras del nombre -->
+        <tr>
+          <td>{{ nombre2 }}</td>
+          <td>capitalizado</td>
+          <td>{{ nombre2 | capitalizado }}</td>
+        </tr>
+        <!-- Pipe personalizado que capitaliza un nombre. En este caso, se le pasa el parámetro opcional "false" para que sólo capitalice la primera palabra del nombre -->
+        <tr>
+          <td>{{ nombre2 }}</td>
+          <td>capitalizado: false</td>
+          <td>{{ nombre2 | capitalizado: false }}</td>
+        </tr>
+        <!-- Pipe que pone el nombre en minúscula -->
+        <tr>
+          <td>{{ nombre }}</td>
+          <td>lowercase</td>
+          <td>{{ nombre | lowercase }}</td>
+        </tr>
+        <!-- Pipe que elimina las 3 primeras posiciones del nombre -->
+        <tr>
+          <td>{{ nombre }}</td>
+          <td>slice: 3</td>
+          <td>{{ nombre | slice: 3 }}</td>
+        </tr>
+        <!-- Pipe que se queda con las 3 primeras posiciones del nombre -->
+        <tr>
+          <td>{{ nombre }}</td>
+          <td>slice: 0:3</td>
+          <td>{{ nombre | slice: 0:3 }}</td>
+        </tr>
+        <!-- Este Pipe por defecto redondea un número decimal usando 3 dígitos en la parte decimal -->
+        <tr>
+          <td>{{ PI }}</td>
+          <td>number</td>
+          <td>{{ PI | number }}</td>
+        </tr>
+        <!-- Pipe que muestra 3 dígitos en la parte entera del número PI y, como mínimo, 0 decimales y, como máximo, 0 decimales(es decir, ningún decimal) -->
+        <tr>
+          <td>{{ PI }}</td>
+          <td>number: '3.0-0'</td>
+          <td>{{ PI | number: '3.0-0' }}</td>
+        </tr>
+        <!-- Pipe que muestra 1 dígito en la parte entera del número PI y, como mínimo, 0 decimales y, como máximo, 2 decimales("0-2") -->
+        <tr>
+          <td>{{ PI }}</td>
+          <td>number: '1.0-2'</td>
+          <td>{{ PI | number: '1.0-2' }}</td>
+        </tr>
+        <!-- Este Pipe por defecto redondea un número decimal y lo utiliza para mostrar su porcentaje usando 2 dígitos -->
+        <tr>
+          <td>{{ porcentaje }}</td>
+          <td>percent</td>
+          <td>{{ porcentaje | percent }}</td>
+        </tr>
+        <!-- Pipe que muestra el porcentaje de un número decimal con 2 enteros y, como mínimo, 2 decimales y, como máximo, 2 decimales("2-2") -->
+        <tr>
+          <td>{{ porcentaje }}</td>
+          <td>percent: '2.2-2'</td>
+          <td>{{ porcentaje | percent: '2.2-2' }}</td>
+        </tr>
+        <!-- Pipe que muestra un valor numérico con formato de tipo de moneda. Por defecto muestra 'USD'(Dólares americanos) -->
+        <tr>
+          <td>{{ salario }}</td>
+          <td>currency</td>
+          <td>{{ salario | currency }}</td>
+        </tr>
+        <!-- Pipe que muestra un valor numérico con formato de tipo de moneda Euro -->
+        <tr>
+          <td>{{ salario }}</td>
+          <td>currency: 'EUR'</td>
+          <td>{{ salario | currency: 'EUR' }}</td>
+        </tr>
+        <!-- Pipe que muestra un valor numérico con formato de dólares canadienses y, como mínimo, 0 decimales y, como máximo, 0 decimales(es decir, ningún decimal) -->
+        <!-- En este caso, "symbol-narrow" es para que aparezca el símbolo de la moneda -->
+        <tr>
+          <td>{{ salario }}</td>
+          <td>currency: 'CAD':'symbol-narrow':'.0-0'</td>
+          <td>{{ salario | currency: 'CAD':'symbol-narrow':'.0-0' }}</td>
+        </tr>
+        <!-- Pipe que muestra la información de una Promesa(función asíncrona) cuando llega(sólo si esa Promesa se resolvió con éxito) -->
+        <tr>
+          <td>{{ valorPromesa }}</td>
+          <td>async</td>
+          <td>{{ valorPromesa | async }}</td>
+        </tr>
+        <!-- Pipe que da formato a una fecha. Por defecto, utiliza un formato corto -->
+        <tr>
+          <td>{{ fecha }}</td>
+          <td>date</td>
+          <td>{{ fecha | date }}</td>
+        </tr>
+        <!-- Pipe que da formato a una fecha. En este caso, utiliza un formato medio -->
+        <tr>
+          <td>{{ fecha }}</td>
+          <td>date: 'medium'</td>
+          <td>{{ fecha | date: 'medium' }}</td>
+        </tr>
+        <!-- Pipe que da formato a una fecha. En este caso, utiliza un formato corto -->
+        <tr>
+          <td>{{ fecha }}</td>
+          <td>date: 'short'</td>
+          <td>{{ fecha | date: 'short' }}</td>
+        </tr>
+        <!-- Pipe que da formato a una fecha. En este caso, utiliza un formado personalizado -->
+        <tr>
+          <td>{{ fecha }}</td>
+          <td>date: 'MMMM - dd'</td>
+          <td>{{ fecha | date: 'MMMM - dd' }}</td>
+        </tr>
+        <!-- Pipe que da formato a una fecha. En este caso, utiliza un formado personalizado teniendo en cuenta el idioma establecido -->
+        <tr>
+          <td>{{ fecha }}</td>
+          <td>
+            date: 'MMMM - dd':'':'{{ idioma }}'
+            <br>
+            <button class="mr-1 btn btn-primary" (click)="idioma = 'es'">Español</button>
+            <button class="mr-1 btn btn-secondary" (click)="idioma = 'en'">Inglés</button>
+            <button class="btn btn-success" (click)="idioma = 'fr'">Francés</button>
+          </td>
+          <td>{{ fecha | date: 'MMMM - dd':'':idioma }}</td>
+        </tr>
+        <!-- Pipe personalizado que sustituye o no un texto por "*". Es decir, si se le pasa "true" como parámetro opcional o nada(por defecto también es "true"), se realiza la sustitución y, en caso contrario, no se hace -->
+        <tr>
+          <td>{{ nombre }}</td>
+          <td>
+            contrasena: {{ activar }}
+            <br>
+            <button (click)="activar=!activar" type="button" class="btn btn-outline-primary">Activar/Desactivar</button>
+          </td>
+          <td>{{ nombre | contrasena: activar }}</td>
+        </tr>                   
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Pipe que se queda con las posiciones que van desde el 1 hasta el 4 del array o arreglo -->
+<h3>Slice <small>slice: 1:4</small></h3>
+<hr>
+<ul class="list-group">
+  <li *ngFor="let personaje of personajes | slice: 1:4" class="list-group-item">{{ personaje }}</li>
+</ul>
+
+<!-- Pipe que muestra el contenido de un objeto en formato JSON -->
+<h3 class="mt-4">JSON</h3>
+<hr>
+<div class="row">
+  <div class="col">
+    <!-- "pre" es una etiqueta HTLM que nos permite visualizar un Json de forma más amigable y óptima(con sus tabulaciones, etc...) -->
+    <pre>
+      {{ heroe | json }}
+    </pre>
+  </div>
+</div>
+
+<!-- Pipe personalizado que hace segura y confiable una URL. En este caso, la URL del vídeo de Youtube -->
+<h3 class="mt-4">Domseguro</h3>
+<hr>
+<div class="row mb-5">
+  <div class="col">
+    <iframe
+      width="560"
+      height="315"
+      [src]="videoUrl | domseguro"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>

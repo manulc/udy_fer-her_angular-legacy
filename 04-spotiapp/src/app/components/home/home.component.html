@@ -1,0 +1,15 @@
+<!-- Renderizamos el componente "app-loading" como un compoenente hijo -->
+<!-- Mostramos este componente hijo(muestra un icono de carga de datos) mientras la propiedad "loading" sea "true" -->
+<app-loading *ngIf="loading"></app-loading>
+<!-- Ejemplo para controlar errores de un observable -->
+<!-- Mostramos esta estructura siempre y cuando la propiedad "error" de la clase asociada a este componente sea "true" -->
+<div class="alert alert-danger animated fadeIn" *ngIf="error">
+  <h3>Error</h3>
+  <p>
+    {{ mensajeError }}
+  </p>
+</div>
+<!-- Renderizamos el componente "app-tarjetas" como un compoenente hijo -->
+<!-- Pasamos la información contenida en la propiedad "nuevosAlbumes" de la clase de este componente "HomeComponent" a la propiedad "items" contenida en la clase del componente hijo cuyo selector es "app-tarjetas" -->
+<!-- Si las propiedades "loading" y "error" son "false", es decir, ya hemos recibido los datos de la API REST de Spotify y no ha ocurrido ningún error, se muestran las tarjetas con la información de los álbumes -->
+<app-tarjetas *ngIf="!loading && !error" [items]="nuevosAlbumes"></app-tarjetas>

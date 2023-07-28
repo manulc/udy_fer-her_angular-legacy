@@ -1,0 +1,9 @@
+<h1>Perfil de usuario</h1>
+<hr>
+<!-- El Pipe "async" espera a que el método asíncrono "userProfile$" finalice y establece la respuesta en "profile" -->
+<!-- Nota: Cuando el nombre de una función o método finaliza en "$", se trata de una convención para indicar que esa función o método devuelve un Observable, es decir, que se trata de una función asíncorna o método asíncrono -->
+<!-- El Pipe "json" convierte la respuesta en "profile" en un objeto Json -->
+<!-- Las etiquetas "pre" y "code" son para que la estructura del objeto Json se muestre de forma óptima y adecuada -->
+<pre *ngIf="authService.userProfile$ | async as profile">
+    <code>{{ profile | json }}</code>
+</pre>

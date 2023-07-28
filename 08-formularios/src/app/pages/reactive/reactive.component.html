@@ -1,0 +1,162 @@
+<h4>Formularios <small> Reactivos </small></h4>
+<hr>
+<form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
+    <div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Nombre</label>
+            <div class="col">
+                <input class="form-control"
+                    type="text"
+                    placeholder="Nombre"
+                    [class.is-invalid]="isNombreInvalid" 
+                    formControlName="nombre">
+                <small *ngIf="isNombreInvalid" class="text-danger">
+                    El nombre es requerido y debe tener al menos 5 letras
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Apellido</label>
+            <div class="col">
+                <input class="form-control"
+                    type="text"
+                    placeholder="Apellido"
+                    [class.is-invalid]="isApellidoInvalid" 
+                    formControlName="apellido">
+                <small *ngIf="isApellidoInvalid" class="text-danger">
+                    El apellido es requerido o inválido
+                </small>
+            </div>
+        </div>
+  
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Correo</label>
+            <div class="col">
+                <input class="form-control"
+                    type="email"
+                    placeholder="Correo electrónico"
+                    [class.is-invalid]="isCorreoInvalid" 
+                    formControlName="correo">
+                <small *ngIf="isCorreoInvalid" class="text-danger">
+                    El correo es requerido y debe tener un formato correcto de email
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Usuario</label>
+            <div class="col">
+                <input class="form-control"
+                    type="text"
+                    placeholder="Nombre de usuario"
+                    [class.is-invalid]="isUsuarioInvalid" 
+                    formControlName="usuario">
+                <small *ngIf="isUsuarioInvalid" class="text-danger">
+                    El nombre de usuario ya existe
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Contraseña</label>
+            <div class="col">
+                <input class="form-control"
+                    type="password"
+                    placeholder="Contraseña"
+                    [class.is-invalid]="isPass1Invalid"
+                    formControlName="pass1">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Repita la contraseña</label>
+            <div class="col">
+                <input class="form-control"
+                    type="password"
+                    placeholder="Repita la contraseña"
+                    [class.is-invalid]="isPass2Invalid"
+                    formControlName="pass2">
+            </div>
+        </div>
+
+        <div class="form-group row" formGroupName="direccion">
+            <label class="col-2 col-form-label">Dirección</label>
+            <div class="form-row col">
+                <div class="col">
+                    <input type="text"
+                        class="form-control"
+                        placeholder="Distrito"
+                        [class.is-invalid]="isDistritoInvalid" 
+                        formControlName="distrito">
+                    <small *ngIf="isDistritoInvalid" class="text-danger">
+                        El distrito es requerido
+                    </small>
+                </div>
+                <div class="col">
+                    <input type="text"
+                        class="form-control"
+                        placeholder="Ciudad"
+                        [class.is-invalid]="isCiudadInvalid" 
+                        formControlName="ciudad">
+                    <small *ngIf="isCiudadInvalid" class="text-danger">
+                        La ciudad es requerida
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <th>Id</th>
+                        <th>Pasatiempo</th>
+                        <th>Borrar</th>
+                    </thead>
+                    <tbody formArrayName="pasatiempos">
+                        <tr *ngFor="let control of pasatiempos.controls; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>
+                                <input type="text"
+                                    class="form-control"
+                                    [formControlName]="i">
+                            </td>
+                            <td>
+                                <button class="btn btn-danger"
+                                    (click)="borrarPasatiempo(i)">
+                                    Borrar
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary mt-3 mb-5 btn-block"
+                    type="button"
+                    (click)="agregarPasatiempo()">
+                    + Agregar
+                </button>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">&nbsp;</label>
+            <div class="input-group col">
+                <button type="submit" class="btn btn-outline-primary btn-block">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<hr>
+<pre>
+    Estado del formulario: {{ forma.valid }}
+    <br>
+    Status: {{ forma.status }}
+</pre>
+
+<pre>
+    {{ forma.value | json }}
+</pre>

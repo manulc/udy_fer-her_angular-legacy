@@ -1,0 +1,15 @@
+<h1>Héroes
+  <small>Marvel y DC</small>
+</h1>
+<hr>
+<!-- Grupo de tarjetas de Bootstrap -->
+<div class="card-columns">
+  <!-- Con la directiva *ngFor, repetimos esta estructura HTML tantas veces como héroes haya en la propiedad "heroes" de este componente -->
+  <!-- En "i" tenemos el índice del array o arreglo "heroes" -->
+  <!-- Este compoente padre("HeroesComponent") incorpora a un componente hijo cuyo selector es "app-heroe-tarjeta" 
+       y, con la instrucción '[heroe]="h"', le pasamos la información de la variable "h" a la propiedad "heroe" definida en el componente hijo asociado al selector "app-heroe-tarjeta"("HeroeTarjetaComponent") -->
+  <!-- También estamos pasando al componente hijo con selector "app-heroe-tarjeta" el valor de la variable "i" a la propiedad "index" definida en ese componente -->
+  <!-- Cuando en la vista asociada a este compoente hijo se pulsa sobre el botón "Ver más...", se invoca a su método "verHeroe" que emite el evento "heroeSeleccionado" con el índice del héroe contenido en "$event".
+       Este evento lo asociamos al método "verHeroe($event)" definido en la clase de este componente padre -->
+  <app-heroe-tarjeta (heroeSeleccionado)="verHeroe($event)" [heroe]="h" [index]="i" *ngFor="let h of heroes, let i = index"></app-heroe-tarjeta>
+</div>

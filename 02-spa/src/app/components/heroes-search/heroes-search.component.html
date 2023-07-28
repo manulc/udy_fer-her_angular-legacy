@@ -1,0 +1,21 @@
+<h1>Buscando: <small>{{ termino }}</small></h1>
+<hr>
+<!-- Esta estructura HTML sólo se va a mostrar cuando la propiedad "heroes" del componente asociado a esta vista tenga longitud igual a 0 -->
+<!-- Estructura a mostrar cuando no se ha encontrado ningún héroe a partir de un término de búsqueda introducido -->
+<div class="row animated fadeIn fast" *ngIf="heroes.length == 0">
+  <div class="col-md-12">
+    <div class="alert alert-info" role="alert">
+      No existen resultados con el término: {{ termino }}
+    </div>
+  </div>
+</div>
+<!-- Grupo de tarjetas de Bootstrap -->
+<div class="card-columns">
+  <!-- Con la directiva *ngFor, repetimos esta estructura HTML tantas veces como héroes haya en la propiedad "heroes" de este componente -->
+  <!-- Este compoente padre("HeroesComponent") incorpora a un componente hijo cuyo selector es "app-heroe-tarjeta" 
+       y, con la instrucción '[heroe]="h"', le pasamos la información de la variable "h" a la propiedad "heroe" definida en el componente hijo asociado al selector "app-heroe-tarjeta"("HeroeTarjetaComponent") -->
+  <!-- También estamos pasando al componente hijo con selector "app-heroe-tarjeta" el índice del héroe a la propiedad "index" definida en ese componente -->
+  <!-- Cuando en la vista asociada a este compoente hijo se pulsa sobre el botón "Ver más...", se invoca a su método "verHeroe" que emite el evento "heroeSeleccionado" con el índice del héroe contenido en "$event".
+       Este evento lo asociamos al método "verHeroe($event)" definido en la clase de este componente padre -->
+  <app-heroe-tarjeta (heroeSeleccionado)="verHeroe($event)" [heroe]="h" [index]="h.idx" *ngFor="let h of heroes"></app-heroe-tarjeta>
+</div>

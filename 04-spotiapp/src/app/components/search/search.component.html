@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col">
+    <label for="termino">Buscar artista</label>
+    <!-- El evento "keyup" hace que, por cada tecla que se pulse en el input, va a invocarse al método "buscarArtista" de la clase asociada a este componente -->
+    <!-- Usamos la directiva "ngModel" para asociar el texto que se introudzca en el input con la prpiedad "termino" de la clase de este componente -->
+    <input type="text" placeholder="Busque un artista..." class="form-control" (keyup)="buscarArtista()" [(ngModel)]="termino"/>
+  </div>
+</div>
+
+<!-- Renderizamos el componente "app-loading" como un compoenente hijo-->
+<!-- Mostramos este componente hijo(muestra un icono de carga de datos) mientras la propiedad "loading" sea "true" -->
+<app-loading *ngIf="loading" class="m-5"></app-loading>
+<!-- Renderizamos el componente "app-tarjetas" como un compoenente hijo-->
+<!-- Pasamos la información contenida en la propiedad "artistas" de la clase de este componente "SearchComponent" a la propiedad "items" contenida en la clase del componente hijo cuyo selector es "app-tarjetas" -->
+<!-- Si la propiedad "loading" es "false", es decir, ya hemos recibido los datos de la API REST de Spotify, se muestran las tarjetas con la información de los artistas -->
+<app-tarjetas *ngIf="!loading" [items]="artistas"></app-tarjetas>

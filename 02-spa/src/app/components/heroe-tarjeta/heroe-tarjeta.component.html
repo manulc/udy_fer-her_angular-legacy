@@ -1,0 +1,21 @@
+  <!-- Tarjeta de Bootstrap -->
+  <div class="card animated fadeIn fast" > 
+    <!-- Al poner "src" entre corchetes, indicamos que el valor va a ser gestionado por Angular -->
+    <!-- Otra manera de hacer referencia a propiedades de un componente es usando interpolación, como por ej: src="{{ heroe.img }}" -->
+    <img class="card-img-top img-fluid" [src]="heroe.img" [alt]="heroe.nombre">
+    <div class="card-body">
+      <!-- Como no se trata de un atributo de HTML, aquí tenemos que user obligatoriamente la interpolación -> {{ ... }} -->
+      <h4 class="card-title">{{ heroe.nombre }}</h4>
+      <p class="card-text">{{ heroe.bio }}</p>
+      <p class="card-text">
+        <small class="text-muted">{{ heroe.aparicion }}</small>
+      </p>
+      <!-- Cuando se pulse sobre el botón, va a ejecutarse el método "verHeroe" definido en el componente asociado a esta vista -->
+      <!-- Establece la ruta por programación a través del método "verHeroe" -->
+      <button type="button" class="btn btn-outline-primary btn-block" (click)="verHeroe()">
+        Ver más...
+      </button>
+      <!-- En vez de usar el botón de arriba, otra alternativa es usar un enlace de esta manera -->
+      <!-- <a [routerLink]="['/heroe', index]" class="btn btn-outline-primary btn-block">Ver más...</a> -->
+    </div>
+  </div>

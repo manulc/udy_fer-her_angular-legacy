@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col">
+        <h1>*ngIf</h1>
+        <hr>
+        <!-- Mediante la directiva *ngIf, estamos condicionando a que se muestre o no el siguiente div a partir de la variable del componente "mostrar" de tipo Boolean -->
+        <div *ngIf="mostrar" class="card text-white bg-primary mb-3" style="width: 100%;">
+            <div class="card-body">
+                <h5 class="card-title">{{ frase.autor }}</h5>
+                <p class="card-text">{{ frase.mensaje }}</p>
+            </div>
+        </div>
+        <!-- Este botón decide si se va a mostrar o no la tarjeta definida abajo condicionada por la variable "mostrar".
+             Cada vez que se haga click sobre el botón, la variable "mostrar" va cambiando entre true/false -->
+        <button type="button" class="btn btn-outline-primary btn-block" (click)="mostrar = !mostrar">
+            Mostrar/Ocultar
+        </button>
+    </div>
+    <div class="col">
+        <h1>*ngFor</h1>
+        <hr>
+        <ul class="list-group">
+            <!-- Sobre la estructura html que queremos repetir, ponemos la directiva *ngFor asociada a un array o arreglo("personajes") para ser recorrido mostrando cada valor("personaje") -->
+            <!-- La directiva *ngFor tiene un indice("index") al que podemos acceder para poder mostrarlo(Hemos declarado "i" asociado a "index") -->
+            <li *ngFor="let personaje of personajes; let i = index" class="list-group-item">
+                {{ i + 1 }}. {{ personaje }}
+            </li>
+        </ul>
+    </div>
+</div>

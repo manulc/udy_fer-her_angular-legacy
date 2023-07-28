@@ -1,0 +1,54 @@
+<!-- Mostramos este componente hijo(muestra un icono de carga de datos) mientras la propiedad "loadingArtist" sea "true" -->
+<app-loading *ngIf="loadingArtist"></app-loading>
+<!-- Si la propiedad "loadingArtist" es "false", es decir, ya hemos recibido los datos de la API REST de Spotify, se muestra la información -->
+<div *ngIf="!loadingArtist" class="row animated fadeIn"> 
+  <div class="col-2">
+      <!-- Aplicamos nuestro Pipe personalizado 'noimage' que mostrará una imagen por defecto en caso de que la imagen original del artista no exista --> 
+      <img [src]="artista.images | noimage" class="img-thumbnail img-circle"/>
+  </div>
+  <div class="col">
+      <h3>{{ artista.name }}</h3>
+      <p>
+        <!-- Navegamos al portal del artista en Spotify usando otra ventana(target = "_blank") del navegador -->
+        <a [href]="artista.external_urls.spotify" target="_blank">Ir a la página del artista</a>
+      </p>
+  </div>
+  <div class="col-4 text-right">
+      <!-- Asociamos el evento "click" de este botón a la ejecución del método "volver" para volver a la ruta anterior -->
+      <button type="button" class="btn btn-outline-danger" (click)="volver()">Regresar</button>
+  </div>
+</div>
+
+<!-- Si la propiedad "topTracks" existe y está definida, es decir, ya hemos recibido los datos de la API REST de Spotify, se muestra la información -->
+<div *ngIf="topTracks" class="row m-5">
+  <div class="col">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Foto</th>
+          <th>Álbum</th>
+          <th>Canción</th>
+          <th>Vista previa</th>
+        </tr>
+      </thead>
+      <!-- Con la directiva *ngFor, repetimos esta estructural HTML tantas veces como canciones haya en la propiedad "topTracks" de la clase asociada a este componente -->
+      <tbody *ngFor="let track of topTracks">
+        <tr>
+          <td>
+            <!-- Aplicamos nuestro Pipe personalizado 'noimage' que mostrará una imagen por defecto en caso de que la imagen original del álbum de la canción no exista --> 
+            <img class="img-thumb" [src]="track.album.images | noimage"/>
+          </td>
+          <td>{{ track.album.name }}</td>
+          <td>{{ track.name }}</td>
+          <td>
+            <!-- Reproductor de audio de HTML. El atributo "controls" permite tener control sobre el audio para reproducirlo, pararlo, descargarlo, etc... -->
+            <!--<audio [src]="track.preview_url" controls></audio>-->
+            <!-- En vez de usar el reproducto de audio de HTML, ahora usamos un Widget de Spotify(obtenido de la web "developer.spotify.com") incrustado aquí mediante un elemento HTML "iframe" -->
+            <!-- Aplicamos nuestro Pipe personalizado "domseguro" para hacer que la URL de Spotify que usamos en este Widget sea segura y confiable y así evitar el error "Error: unsafe value used in a resource URL context" -->
+            <iframe [src]="track.uri | domseguro: 'https://open.spotify.com/embed?uri='" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

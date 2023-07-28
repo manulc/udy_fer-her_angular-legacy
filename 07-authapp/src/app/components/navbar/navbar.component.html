@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Auth0 App</a>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="home">Home</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="precios">Precios</a>
+      </li>
+      <li *ngIf="authService.loggedIn" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['protegida']">Protegida</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      <button *ngIf="!authService.loggedIn" class="btn btn-outline-primary" (click)="authService.login()">Ingresar</button>
+      <button *ngIf="authService.loggedIn" class="btn btn-outline-danger" (click)="authService.logout()">Salir</button>
+    </span>
+  </div>
+</nav>

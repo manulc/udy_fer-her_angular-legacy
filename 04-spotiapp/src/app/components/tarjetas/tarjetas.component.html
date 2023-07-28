@@ -1,0 +1,13 @@
+<div class="card-columns m-5 animated fadeIn">
+  <!-- Con la directiva *ngFor, repetimos esta estructura HTML tantas veces como items haya -->
+  <!-- Asociamos el evento "click" de este "div" con la ejecución del método "verArtista" implementado en la clase de este componente -->
+  <div class="card puntero" *ngFor="let item of items" (click)="verArtista(item)">
+    <!-- A cada item le pasamos nuestro Pipe personalizado "noimage" que mostrará una imagen por defecto en caso de que la original no exista -->
+    <img class="card-img-top" [src]="item.images | noimage" alt="Card img cap"/>
+    <div class="card-body">
+      <h5 class="card-title">{{ item.name }}</h5>
+      <!-- Con la directiva *ngFor de Angular, recorremos el array o arreglo de artistas("item.artists") de cada item usando la variable "artista" -->
+      <span class="badge badge-pill badge-primary" *ngFor="let artista of item.artists">{{ artista.name }}</span>
+    </div>
+  </div>
+</div>

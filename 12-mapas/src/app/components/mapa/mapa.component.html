@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-title>Mapa</mat-card-title>
+  <mat-card-content>
+    <mgl-map
+      [style]="style"
+      [zoom]="zoom"
+      [center]="[lng, lat]"
+      (mapDblClick)="agregarMarcador($event)"
+      [doubleClickZoom]="false"
+    >
+      <ng-container *ngFor="let marcador of marcadores; let i = index">
+        <mgl-marker #markerRef [lngLat]="[marcador.lng, marcador.lat]"></mgl-marker>
+        <mgl-popup [marker]="markerRef">
+          <strong>{{ marcador.titulo }}</strong>
+          <p>
+            {{ marcador.desc }}
+          </p>
+          <div>
+            <button
+              mat-raised-button color="primary"
+              style="margin-right: 3px;"
+              (click)="editarMarcador(marcador)">
+              Editar
+            </button>
+            <button
+              mat-raised-button color="warn"
+              (click)="eliminarMarcador(i)">
+              Borrar
+            </button>
+          </div>
+        </mgl-popup>
+      </ng-container>
+    </mgl-map>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,25 @@
+<h1>Chat</h1>
+<hr>
+
+<div class="app-mensajes" id="app-mensajes">
+  <!-- Con la directiva "ngClass", ponemos los mensajes pertenecientes al usuario autenticado en la parte derecha del chat(clase de estilos
+       "text-right") y dejamos los mensajes de otros usuarios en la parte izquierda(lado por defecto) -->
+  <div [ngClass]="{ 'text-right': chatService.usuario.uid === chat.uid }" *ngFor="let chat of chats">
+    <!-- Con la directiva "ngClass", ponemos los mensajes pertenecientes al usuario autenticado de un color(clase de estilos "badge-primary")
+      y los mensaje de otros usuarios de otro color(clase de estilos "badge-success") -->
+    <span class="badge"
+      [ngClass]="{ 'badge-primary': chatService.usuario.uid === chat.uid, 'badge-success': chatService.usuario.uid !== chat.uid}">
+      {{ chat.nombre }}
+    </span>
+    <p>
+      {{ chat.mensaje }}
+    </p>
+  </div>
+</div>
+
+<input type="text"
+  class="form-control"
+  name="mensaje"
+  placeholder="Enviar mensaje"
+  [(ngModel)]="mensaje"
+  (keyup.enter)="enviarMensaje()">

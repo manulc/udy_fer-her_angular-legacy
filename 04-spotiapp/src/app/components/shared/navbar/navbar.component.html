@@ -1,0 +1,24 @@
+<!-- Navbar de Bootstrap -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">
+    <img src="assets/img/banner-ico.png" width="30" height="30" alt=""> SpotiApp
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <!-- Con "routerLinkActive", Angular determina si el enlace está activado o no, y cuando lo esté, como tiene asociado la clase "active", se va a ver visualmente -->
+      <li class="nav-item" routerLinkActive="active">
+        <!-- Una manera de manejar la navegabilidad con Angular usando "routerLink" -->
+        <a class="nav-link" routerLink="home">Home</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <!-- Otra manera es usando los corchetes para indicar que se trata de una propiedad o variable que va a ser manejada por Angular
+             Le pasamos un array de segmentos. Por ej: El array o arreglo "['search', 'otroseg', 'variable']" sería la ruta "/search/otroseg/variable" -->
+        <a class="nav-link" [routerLink]="['search']">Search</a>
+      </li>
+    </ul>
+  </div>
+</nav>
